@@ -89,7 +89,7 @@
 
 		num_layer {
 			bindings = <
-				&kp N0			&kp N1	  		&kp N2			&kp N3			&kp LS(RBKT     )	&kp BKSP	            &kp BKSP	    &kp F1			&kp F2			&kp F3			&kp F4      	&kp BKSP
+				&kp N0			&kp N1	  		&kp N2			&kp N3			&kp LS(RBKT)	&kp BKSP	            &kp BKSP	    &kp F1			&kp F2			&kp F3			&kp F4      	&kp BKSP
 				&trans			&kp N4			&kp N5			&kp N6			&kp RBKT		&trans					&trans			&kp F5			&kp F6			&kp F7			&kp F8	    	&trans
 				&trans			&kp N7			&kp N8			&kp N9			&kp FSLH		&trans					&trans			&kp F9			&kp F10			&kp F11			&kp F12		    &kp ENTER
 																&kp N0  		&trans 			&trans					&kp COMMA		&kp DOT			&kp N0
