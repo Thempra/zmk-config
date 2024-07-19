@@ -71,7 +71,7 @@
 			bindings = <
 				&kp ESC     	&kp LS(N1)		&kp LS(N2)	  	&kp LS(N3)		&kp LS(N4)		&kp LS(N5)	  			&kp LS(N6)		&kp LS(N7)		&kp LS(N8)		&kp LS(N9)		&kp LS(N0)		&kp LBKT
 				&kp RA(GRAVE)	&kp RA(N1)		&kp RA(N2)  	&kp RA(N3)		&kp RA(N4)		&kp RA(N5)				&kp RA(N6)		&kp LS(RBKT)	&kp LS(EQUAL)	&kp LS(MINUS) 	&kp	EQUAL		&kp MINUS	
-				&bootloader		&trans			&trans			&kp NUHS		&trans			&kp LG(LS(S))			&trans			&trans			&trans			&trans			&trans			&kp CAPS
+				&kp LT		    &kp GT			&trans			&kp NUHS		&trans			&kp LG(LS(S))			&kp LBRC		&kp RBRC		&kp LBKT		&kp RBKT		&trans			&kp TILDE
 																&kp LBKT		&kp ENTER		&trans					&kp SPACE		&trans 			&trans 
 			>;
 		};
@@ -82,7 +82,7 @@
 				&kp GRAVE		&kp N1			&kp N2		  	&kp N3			&kp N4			&kp N5		  			&kp N6			&kp N7			&kp N8			&kp N9			&kp N0			&kp DEL
 				&trans			&trans			&trans			&trans			&trans			&trans					&trans			&kp RA(APOS)	&kp RA(NUHS)	&kp RA(LBKT)	&kp RA(RBKT)	&trans			
 				&trans			&trans			&trans			&kp LS(NUHS)	&trans			&trans					&trans			&kp NUBS		&kp LS(NUBS)	&trans			&trans			&kp LA(LC(DEL))
-																&kp ENTER		&kp SPACE		&mo TES_L				&trans			&bootloader		&trans 
+																&kp BLE_L		&kp SPACE		&mo TES_L				&trans			&trans		&trans
 			>;
 		};
 
@@ -109,7 +109,7 @@
 
 		ble_layer {
 			bindings = <
-				&trans			&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_SEL 4			&trans			&trans			&trans			&trans			&trans			&trans
+				&trans			&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_SEL 4			&kp C_AL_WWW	&kp C_AL_MAIL	&kp C_AL_IM 	&kp C_AL_CHAT	&trans			&trans
 				&trans			&trans			&trans			&trans			&trans			&trans					&sys_reset		&bt BT_CLR		&bt BT_PRV		&bt BT_NXT		&trans			&trans
 				&bootloader		&trans			&trans			&trans			&trans			&trans					&trans			&trans			&trans			&trans			&trans			&bootloader
 																&trans  		&trans 			&trans					&trans			&trans			&trans
