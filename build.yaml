@@ -13,9 +13,9 @@
 #
 ---
 include:
-  - board: seeeduino_xiao_ble
+  - board: seeed_xiao_ble
     shield: chocorne_left
-  - board: seeeduino_xiao_ble
+  - board: seeed_xiao_ble
     shield: chocorne_right
-  - board: seeeduino_xiao_ble
+  - board: seeed_xiao_ble
     shield: settings_reset
