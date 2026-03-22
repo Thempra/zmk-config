@@ -330,6 +330,22 @@
             bindings = <&mo BLE_L>;
             layers = <DEF_L LOW_L RAI_L>;
         };
+
+        // Bootloader izquierdo: Z + X
+        combo_bootloader_left {
+            timeout-ms = <50>;
+            key-positions = <24 25>;
+            bindings = <&bootloader>;
+            layers = <DEF_L>;
+        };
+
+        // Bootloader derecho: , + .
+        combo_bootloader_right {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            bindings = <&bootloader>;
+            layers = <DEF_L>;
+        };
     };
 
     // =========================================================================
