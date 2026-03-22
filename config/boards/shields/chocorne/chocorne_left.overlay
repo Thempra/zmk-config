@@ -5,6 +5,7 @@
  */
 
 #include "chocorne.dtsi"
+#include "chocorne-layouts.dtsi"
 
 &kscan0 {
     col-gpios
@@ -15,4 +16,9 @@
         , <&xiao_d 4 GPIO_ACTIVE_HIGH>
         , <&xiao_d 5 GPIO_ACTIVE_HIGH>
         ;
+};
+
+&chocorne_physical_layout {
+    kscan = <&kscan0>;
+    transform = <&default_transform>;
 };
