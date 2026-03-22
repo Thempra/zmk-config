@@ -338,6 +338,11 @@
     keymap {
         compatible = "zmk,keymap";
 
+        studio_unlock: studio_unlock {
+            compatible = "zmk,behavior-studio-unlock";
+            #binding-cells = <0>;
+        };
+
         // ─────────────────────────────────────────────────────────────────────
         // 0 · DEFAULT
         // ─────────────────────────────────────────────────────────────────────
@@ -493,10 +498,10 @@
         //
         ble_layer {
             bindings = <
-&trans       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &out OUT_TOG  &trans      &trans       &trans       &trans  &trans
+&studio_unlock &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &out OUT_TOG  &trans      &trans       &trans       &trans  &trans
 &trans       &trans        &trans        &trans        &trans        &trans          &sys_reset    &bt BT_CLR  &bt BT_PRV   &bt BT_NXT   &trans  &trans
 &bootloader  &trans        &trans        &trans        &trans        &trans          &trans        &trans      &trans       &trans       &trans  &bootloader
-                                         &trans        &trans        &trans          &trans        &trans      &trans
+                                        &trans        &trans        &trans          &trans        &trans      &trans
             >;
         };
 
