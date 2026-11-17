@@ -507,7 +507,7 @@
         //
         // Fila 3 izq = VS Code workflow:
         //   PAL = Command Palette (Ctrl+Shift+P)
-        //   TRM = Toggle Terminal  (Ctrl+`)
+        //   TRM = Toggle Terminal  (Ctrl+º; ver nota en VS_TERM)
         //   FMT = Format Document  (Ctrl+Shift+I)
         //   SRH = Search en repo   (Ctrl+Shift+F)
         // Fila 3 der = refactoring:
@@ -562,7 +562,7 @@
         // ├──────┼───┼───┼───┼──────┼──────┤   ├──────┼────┼────┼────┼────┼──────┤
         // │   =  │ 1 │ 2 │ 3 │ ENTR │      │   │      │ F9 │F10 │F11 │F12 │ ENT  │
         // └──────┴───┴───┴─┬─┴──┬───┴─┬────┘   └──┬───┴─┬──┴─┬──┴────┴────┴──────┘
-        //                  │ 0  │  ,  │  .        │     │▓▓▓│   │
+        //                  │ 0  │  ,  │  .        │ SPC │▓▓▓│   │
         //                  └────┴─────┴───        └─────┴────┴───┘
         //
         num_layer {
