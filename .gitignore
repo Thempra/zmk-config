@@ -1,0 +1,10 @@
+# IDE
+.idea/
+.vscode/
+
+# ZMK build artifacts
+build/
+*.uf2
+*.hex
+*.bin
+*.elf

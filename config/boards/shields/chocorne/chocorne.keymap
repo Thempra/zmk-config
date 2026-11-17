@@ -27,50 +27,59 @@
 #define BLE_L 5   // BLE     — Bluetooth / sistema
 #define SYM_L 6   // Sym     — símbolos ES escritura
 
-// ─── Keycodes ES (teclado físico Español) ─────────────────────────────────────
+// Modelo: el nombre ZMK designa la POSICIÓN física (nomenclatura US) y el
+// layout ES del host decide qué símbolo emite. Cada línea verificada con
+// `xkbcli compile-keymap --layout es` (host: X11 Layout = es, es(basic)).
+// Nivel 1 = tecla, 2 = Shift, 3 = AltGr, 4 = AltGr+Shift.
+//
 // Brackets y agrupadores
-#define ES_LBRC   RA(GRAVE)      // {
-#define ES_RBRC   RA(PLUS)       // }
-#define ES_LBKT   RA(LBKT)       // [
-#define ES_RBKT   RA(RBKT)       // ]
-#define ES_LPAR   LS(N8)         // (
-#define ES_RPAR   LS(N9)         // )
-#define ES_LT     NUBS           // <
-#define ES_GT     LS(NUBS)       // >
+#define ES_LBRC   RA(APOS)       // {   AC11·3
+#define ES_RBRC   RA(BSLH)       // }   BKSL·3
+#define ES_LBKT   RA(LBKT)       // [   AD11·3
+#define ES_RBKT   RA(RBKT)       // ]   AD12·3
+#define ES_LPAR   LS(N8)         // (   AE08·2
+#define ES_RPAR   LS(N9)         // )   AE09·2
+#define ES_LT     NUBS           // <   LSGT·1 (tecla ISO 102)
+#define ES_GT     LS(NUBS)       // >   LSGT·2
 // Comillas y literales
-#define ES_APOS   NUHS           // '  (tecla # física en ES)
-#define ES_DQUOT  LS(N2)         // "
-#define ES_BKTK   RA(BSLH)       // `  (AltGr + \)
+#define ES_APOS   MINUS          // '   AE11·1
+#define ES_DQUOT  LS(N2)         // "   AE02·2
+// ` y ^ no existen como carácter en es(basic): sólo como dead key + espacio,
+// por eso son macros (m_btk / m_caret) y no defines de una tecla.
 // Operadores
-#define ES_PIPE   RA(N1)         // |
-#define ES_BSLH   RA(MINUS)      // Backslash
-#define ES_AT     RA(N2)         // @
-#define ES_HASH   RA(N3)         // #
-#define ES_TILDE  RA(N4)         // ~
-#define ES_EURO   RA(N5)         // €
-#define ES_CARET  LS(LBKT)       // ^
-#define ES_PLUS   RBKT            // +
-#define ES_MINUS  FSLH            // -
-#define ES_UNDER  LS(FSLH)       // _
-#define ES_EQUAL  LS(N0)         // =
-#define ES_FSLH   LS(N7)         // /
-#define ES_STAR   LS(RBKT)       // *
-#define ES_AMPR   LS(N6)         // &
-#define ES_DLLR   LS(N4)         // $
-#define ES_PRCNT  LS(N5)         // %
-#define ES_EXCL   LS(N1)         // !
-#define ES_SCLN   LS(COMMA)      // ;
-#define ES_COLN   LS(DOT)        // :
-#define ES_IQUES  LS(MINUS)      // ?
-#define ES_IEXCL  RA(N1)         // ¡
-#define ES_MIDDOT LS(N3)         // ·
+#define ES_PIPE   RA(N1)         // |   AE01·3
+#define ES_BSLH   RA(MINUS)      // \   AE11·3
+#define ES_AT     RA(N2)         // @   AE02·3
+#define ES_HASH   RA(N3)         // #   AE03·3
+#define ES_TILDE  RA(N4)         // ~   AE04·3
+#define ES_EURO   RA(E)          // €   AD03·3
+#define ES_PLUS   RBKT           // +   AD12·1
+#define ES_MINUS  FSLH           // -   AB10·1
+#define ES_UNDER  LS(FSLH)       // _   AB10·2
+#define ES_EQUAL  LS(N0)         // =   AE10·2
+#define ES_FSLH   LS(N7)         // /   AE07·2
+#define ES_STAR   LS(RBKT)       // *   AD12·2
+#define ES_AMPR   LS(N6)         // &   AE06·2
+#define ES_DLLR   LS(N4)         // $   AE04·2
+#define ES_PRCNT  LS(N5)         // %   AE05·2
+#define ES_EXCL   LS(N1)         // !   AE01·2
+#define ES_SCLN   LS(COMMA)      // ;   AB08·2
+#define ES_COLN   LS(DOT)        // :   AB09·2
+#define ES_IQUES  LS(MINUS)      // ?   AE11·2
+#define ES_IEXCL  RA(LS(N1))     // ¡   AE01·4
+#define ES_MIDDOT LS(N3)         // ·   AE03·2
+#define ES_COPY   RA(LS(C))      // ©   AB03·4
+#define ES_REGS   RA(LS(R))      // ®   AD04·4
+#define ES_TM     RA(LS(N8))     // ™   AE08·4
 // Español
-#define ES_NTIL   SEMI           // Ñ  (tecla ; en ES)
-#define ES_ACUT   LBKT           // ´  dead acute → á é í ó ú
+#define ES_NTIL   SEMI           // ñ   AC10·1
 
 // VS Code atajos (Windows)
 #define VS_FMT    LC(LS(I))      // Format document
-#define VS_TERM   LC(GRAVE)      // Toggle terminal integrado
+#define VS_TERM   LC(GRAVE)      // Toggle terminal: envía Ctrl+º (TLDE en es).
+                                 // VS Code espera Ctrl+` y es(basic) no puede emitir
+                                 // backtick como keysym simple. Si no responde,
+                                 // rebindear a Ctrl+º o usar PAL → "Toggle Terminal".
 #define VS_SB     LC(B)          // Toggle sidebar
 #define VS_QFX    LC(DOT)        // Quick fix / code action
 #define VS_REN    LC(F2)         // Rename symbol
@@ -166,12 +175,33 @@
             bindings = <&kp ES_APOS &kp ES_APOS &kp LEFT>;
         };
 
-        // ``
-        m_bktk: macro_backtick {
+        // `  — backtick literal: dead_grave + espacio en es(basic)
+        // wait-ms alto: el host debe registrar la dead key antes de la siguiente
+        m_btk: macro_backtick {
+            compatible = "zmk,behavior-macro";
+            label = "M_BTK";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp LBKT &kp SPACE>;
+        };
+
+        // ^  — circumflex literal: dead_circumflex + espacio
+        m_caret: macro_caret {
+            compatible = "zmk,behavior-macro";
+            label = "M_CARET";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp LS(LBKT) &kp SPACE>;
+        };
+
+        // ``  — par de backticks, cursor en medio. Taps inlineados (no se anida
+        //       m_btk): el timing de una dead key no debe depender de dos colas.
+        m_bktk: macro_backtick_pair {
             compatible = "zmk,behavior-macro";
             label = "M_BKTK";
             #binding-cells = <0>;
-            bindings = <&kp ES_BKTK &kp ES_BKTK &kp LEFT>;
+            wait-ms = <40>;
+            bindings = <&kp LBKT &kp SPACE &kp LBKT &kp SPACE &kp LEFT>;
         };
 
         // ``` — triple backtick (Python docstrings / Markdown)
@@ -179,8 +209,10 @@
             compatible = "zmk,behavior-macro";
             label = "M_TRBK";
             #binding-cells = <0>;
-            bindings = <&kp ES_BKTK &kp ES_BKTK &kp ES_BKTK>;
+            wait-ms = <40>;
+            bindings = <&kp LBKT &kp SPACE &kp LBKT &kp SPACE &kp LBKT &kp SPACE>;
         };
+
 
         // -> — arrow operator (Go, C, Python type hints)
         m_arrow: macro_arrow {
@@ -221,6 +253,57 @@
             #binding-cells = <0>;
             bindings = <&kp DOT &kp DOT &kp DOT>;
         };
+
+        // ── Acentos ES ────────────────────────────────────────────────────────
+        // APOS = AC11·1 = dead_acute; LS(APOS) = AC11·2 = dead_diaeresis.
+        // El host compone dead key + vocal (verificado en locale Compose).
+        m_aacute: macro_a_acute {
+            compatible = "zmk,behavior-macro";
+            label = "M_AACUTE";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp APOS &kp A>;
+        };
+
+        m_eacute: macro_e_acute {
+            compatible = "zmk,behavior-macro";
+            label = "M_EACUTE";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp APOS &kp E>;
+        };
+
+        m_iacute: macro_i_acute {
+            compatible = "zmk,behavior-macro";
+            label = "M_IACUTE";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp APOS &kp I>;
+        };
+
+        m_oacute: macro_o_acute {
+            compatible = "zmk,behavior-macro";
+            label = "M_OACUTE";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp APOS &kp O>;
+        };
+
+        m_uacute: macro_u_acute {
+            compatible = "zmk,behavior-macro";
+            label = "M_UACUTE";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp APOS &kp U>;
+        };
+
+        m_udiaer: macro_u_diaeresis {
+            compatible = "zmk,behavior-macro";
+            label = "M_UDIAER";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            bindings = <&kp LS(APOS) &kp U>;
+        };
     };
 
     // =========================================================================
@@ -242,7 +325,7 @@
         // Caps Word: F + J — mayúsculas temporales (útil para constantes: MY_CONST)
         combo_caps_word {
             timeout-ms = <40>;
-            key-positions = <15 19>;
+            key-positions = <16 19>;
             bindings = <&caps_word>;
             layers = <DEF_L>;
         };
@@ -250,7 +333,7 @@
         // Ñ: N + M
         combo_enie {
             timeout-ms = <40>;
-            key-positions = <25 26>;
+            key-positions = <30 31>;
             bindings = <&kp ES_NTIL>;
             layers = <DEF_L>;
         };
@@ -258,7 +341,7 @@
         // ¿: coma + punto
         combo_iques {
             timeout-ms = <40>;
-            key-positions = <27 28>;
+            key-positions = <32 33>;
             bindings = <&kp ES_IQUES>;
             layers = <DEF_L>;
         };
@@ -326,23 +409,17 @@
         // BLE layer: pulgares interiores (ENTER + SPACE)
         combo_ble {
             timeout-ms = <50>;
-            key-positions = <39 40>;
+            key-positions = <38 39>;
             bindings = <&mo BLE_L>;
             layers = <DEF_L LOW_L RAI_L>;
         };
 
-        // Bootloader izquierdo: Z + X
-        combo_bootloader_left {
+        // Bootloader: Z + X. Los combos se ejecutan siempre en la central
+        // (ZMK docs/reset.md), así que esto reinicia la mitad izquierda.
+        // La derecha tiene su propio &bootloader source-local en BLE_L.
+        combo_bootloader {
             timeout-ms = <50>;
-            key-positions = <24 25>;
-            bindings = <&bootloader>;
-            layers = <DEF_L>;
-        };
-
-        // Bootloader derecho: , + .
-        combo_bootloader_right {
-            timeout-ms = <50>;
-            key-positions = <27 28>;
+            key-positions = <25 26>;
             bindings = <&bootloader>;
             layers = <DEF_L>;
         };
@@ -374,7 +451,7 @@
         //   ,+. → ¿          O+P → DEL           I+O → BKSP
         //   W+E → ```        R+T → ...
         //   H+J → ->         J+K → =>            K+L → :=
-        //   ENT+SPC → BLE
+        //   ENT+SPC → BLE    Z+X → Bootloader (mitad izquierda)
         //
         default_layer {
             bindings = <
@@ -407,9 +484,9 @@
         //
         lower_layer {
             bindings = <
-&kp ESC      &kp ES_EXCL  &kp ES_AT    &kp ES_HASH   &kp ES_DLLR   &kp ES_PRCNT    &kp ES_CARET  &m_parens    &m_bkts      &m_brcs      &m_bktk      &kp DEL
+&kp ESC      &kp ES_EXCL  &kp ES_AT    &kp ES_HASH   &kp ES_DLLR   &kp ES_PRCNT    &m_caret      &m_parens    &m_bkts      &m_brcs      &m_bktk      &kp DEL
 &kp ES_TILDE &kp ES_AMPR  &kp ES_STAR  &kp ES_FSLH   &kp ES_BSLH   &kp ES_PIPE     &kp ES_EQUAL  &kp ES_PLUS  &kp ES_MINUS &kp ES_UNDER &kp ES_SCLN  &kp ES_COLN
-&kp ES_LT    &kp ES_GT    &m_dquot     &m_squot      &m_trbk       &kp WIN_SNIP    &kp ES_IQUES  &kp ES_LT    &kp ES_GT    &kp ES_BKTK  &trans       &trans
+&kp ES_LT    &kp ES_GT    &m_dquot     &m_squot      &m_trbk       &kp WIN_SNIP    &kp ES_IQUES  &kp ES_LT    &kp ES_GT    &m_btk       &trans       &trans
                                         &trans        &kp LGUI      &kp SPACE       &kp SPACE     &trans       &trans
             >;
         };
@@ -440,7 +517,7 @@
         //
         raise_layer {
             bindings = <
-&kp GRAVE  &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7      &kp N8      &kp N9       &kp N0   &kp DEL
+&m_btk     &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7      &kp N8      &kp N9       &kp N0   &kp DEL
 &kp F1     &kp F2       &kp F3       &kp F4       &kp F5       &kp F6         &kp F7   &kp F8      &kp F9      &kp F10      &kp F11  &kp F12
 &kp CAPS   &kp VS_PAL   &kp VS_TERM  &kp VS_FMT   &kp VS_SRCH  &trans         &trans   &kp VS_QFX  &kp VS_REN  &kp VS_DEF   &trans   &kp LA(LC(DEL))
                                       &mo BLE_L    &trans       &mo SYM_L      &trans   &trans      &trans
@@ -533,13 +610,14 @@
         //                      │     │     │▓▓▓      │     │     │   │
         //                      └─────┴─────┴─────    └─────┴─────┴───┘
         //
-        // Nota: en teclado ES, RA(vocal) produce la vocal con acento
+        // Nota: los acentos se componen con dead_acute/diaeresis (APOS / LS(APOS))
+        // seguidos de la vocal. RA(vocal) NO acentúa en es: da æ € ↓ → ø ←.
         //
         sym_layer {
             bindings = <
-&trans  &kp ES_IEXCL   &kp ES_IQUES    &kp ES_MIDDOT  &kp ES_EURO  &trans      &trans  &kp RA(U)  &kp RA(I)  &kp RA(O)  &kp RA(Y)  &trans
-&trans  &kp RA(A)      &kp RA(E)       &trans         &trans       &trans      &trans  &trans     &trans     &trans     &trans     &trans
-&trans  &trans         &trans          &kp RA(C)      &kp RA(R)    &kp RA(T)   &trans  &trans     &trans     &trans     &trans     &trans
+&trans  &kp ES_IEXCL   &kp ES_IQUES    &kp ES_MIDDOT  &kp ES_EURO   &trans     &trans  &m_uacute  &m_iacute  &m_oacute  &m_udiaer  &trans
+&trans  &m_aacute      &m_eacute       &trans         &trans        &trans     &trans  &trans     &trans     &trans     &trans     &trans
+&trans  &trans         &trans          &kp ES_COPY    &kp ES_REGS   &kp ES_TM  &trans  &trans     &trans     &trans     &trans     &trans
                                         &trans         &trans       &trans      &trans  &trans     &trans
             >;
         };

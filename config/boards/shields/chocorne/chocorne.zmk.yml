@@ -2,7 +2,7 @@ file_format: "1"
 id: chocorne
 name: chocorne
 type: shield
-url: https://github.com/ddelriomonferrer/zmk-config
+url: https://github.com/Thempra/zmk-config
 requires: [seeeduino_xiao_ble]
 features:
   - keys

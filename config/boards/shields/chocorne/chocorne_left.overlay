@@ -5,7 +5,6 @@
  */
 
 #include "chocorne.dtsi"
-#include "chocorne-layouts.dtsi"
 
 &kscan0 {
     col-gpios
@@ -18,7 +17,3 @@
         ;
 };
 
-&chocorne_physical_layout {
-    kscan = <&kscan0>;
-    transform = <&default_transform>;
-};

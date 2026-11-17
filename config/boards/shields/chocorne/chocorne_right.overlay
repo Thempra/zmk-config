@@ -5,7 +5,6 @@
  */
 
 #include "chocorne.dtsi"
-#include "chocorne-layouts.dtsi"
 
 &default_transform {
     col-offset = <6>;
@@ -20,10 +19,4 @@
         , <&xiao_d 1 GPIO_ACTIVE_HIGH>
         , <&xiao_d 0 GPIO_ACTIVE_HIGH>
         ;
-
-};
-
-&chocorne_physical_layout {
-    kscan = <&kscan0>;
-    transform = <&default_transform>;
 };
